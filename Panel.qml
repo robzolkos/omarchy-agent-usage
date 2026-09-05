@@ -14,7 +14,7 @@ Panel {
   manageIpc: false
 
   property double nowMs: Date.now()
-  readonly property color foreground: bar ? bar.barForeground : Color.foreground
+  readonly property color foreground: Color.popups.text
   readonly property color urgent: bar ? bar.urgent : Color.urgent
   readonly property color dim: Qt.darker(foreground, 1.55)
   readonly property string fontFamily: bar ? bar.fontFamily : Style.font.family
@@ -103,7 +103,7 @@ Panel {
         width: 1
         height: Style.space(13)
         anchors.verticalCenter: parent.verticalCenter
-        color: root.dim
+        color: Qt.darker(root.barForeground, 1.55)
         opacity: 0.65
       }
 
@@ -241,13 +241,13 @@ Panel {
       anchors.verticalCenter: parent.verticalCenter
       source: chip.iconSource
       tinted: chip.tintIcon
-      color: chip.behind ? root.urgent : root.foreground
+      color: chip.behind ? root.urgent : root.barForeground
     }
 
     Text {
       anchors.verticalCenter: parent.verticalCenter
       text: chip.provider.id === "claude" ? "Claude" : "Codex"
-      color: chip.behind ? root.urgent : root.foreground
+      color: chip.behind ? root.urgent : root.barForeground
       font.family: root.fontFamily
       font.pixelSize: Style.font.caption
       font.bold: true
@@ -258,7 +258,7 @@ Panel {
       text: chip.weekly
         ? Model.percent(chip.weekly.used) + " · " + Model.countdown(chip.weekly.resetMs, root.nowMs)
         : "—"
-      color: chip.behind ? root.urgent : root.foreground
+      color: chip.behind ? root.urgent : root.barForeground
       font.family: root.fontFamily
       font.pixelSize: Style.font.caption
     }
