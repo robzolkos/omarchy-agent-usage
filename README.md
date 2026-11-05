@@ -12,6 +12,8 @@ Each provider displays its weekly allowance used and the time until reset direct
 Claude 31% · 16h  Codex 18% · 4d 22h
 ```
 
+To save space, the provider names can be hidden so only the icons, usage, and reset countdown remain. See [Settings](#settings).
+
 A provider turns red when its usage exceeds the prorated portion of its seven-day window. For example, with 70% of the week elapsed, 76% used is behind pace while 58% used is ahead.
 
 Click the bar display for detailed meters, expected remaining allowance, pace difference, a seven-day token chart, and additional limit windows. Right-click or middle-click to refresh immediately.
@@ -49,10 +51,18 @@ omarchy plugin disable omarchy.agents
 - Press `R` while the panel is open to refresh.
 - Press Escape to close the panel.
 
-The plugin refreshes every five minutes by default. Change the interval with:
+## Settings
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| `refreshIntervalSec` | `300` | Seconds between refreshes, from 60 to 3600. |
+| `showProviderNames` | `true` | Show the "Claude" and "Codex" names in the bar. The details panel always shows them. |
+
+Change a setting with `omarchy bar set`:
 
 ```bash
 omarchy bar set robzolkos.agent-usage refreshIntervalSec 600 --json
+omarchy bar set robzolkos.agent-usage showProviderNames false --json
 ```
 
 ## Removal

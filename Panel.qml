@@ -18,6 +18,7 @@ Panel {
   readonly property color urgent: bar ? bar.urgent : Color.urgent
   readonly property color dim: Qt.darker(foreground, 1.55)
   readonly property string fontFamily: bar ? bar.fontFamily : Style.font.family
+  readonly property bool showProviderNames: root.setting("showProviderNames", true) !== false
   readonly property bool alarming: Model.behindPace(service.claude.weekly, nowMs)
     || Model.behindPace(service.codex.weekly, nowMs)
 
@@ -244,8 +245,10 @@ Panel {
       color: chip.behind ? root.urgent : root.barForeground
     }
 
+    // Row skips invisible children, so hiding the name also drops its spacing.
     Text {
       anchors.verticalCenter: parent.verticalCenter
+      visible: root.showProviderNames
       text: chip.provider.id === "claude" ? "Claude" : "Codex"
       color: chip.behind ? root.urgent : root.barForeground
       font.family: root.fontFamily
