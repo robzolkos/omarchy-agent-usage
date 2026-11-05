@@ -24,7 +24,8 @@
     "allowMultiple": false,
     "defaultSection": "right",
     "defaults": {
-      "refreshIntervalSec": 300
+      "refreshIntervalSec": 300,
+      "showProviderNames": true
     },
     "schema": [
       {
@@ -35,6 +36,13 @@
         "max": 3600,
         "step": 60,
         "defaultValue": 300
+      },
+      {
+        "key": "showProviderNames",
+        "type": "boolean",
+        "label": "Show provider names in bar",
+        "description": "Turn off to show only the icons, usage, and reset countdown in the bar.",
+        "defaultValue": true
       }
     ]
   }
